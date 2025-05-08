@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="portfolioApp">
+<head>
+  <meta charset="UTF-8">
+  <title>My Portfolio</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="app.js"></script>
+  <style>
+    body { font-family: Arial; margin: 2rem; background: #f2f2f2; }
+    .card { background: #fff; padding: 1.5rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    h1, h2 { color: #333; }
+  </style>
+</head>
+<body ng-controller="MainController">
+
+  <div class="card">
+    <h1>{{ name }}</h1>
+    <h2>{{ title }}</h2>
+    <p><strong>Email:</strong> {{ email }}</p>
+    <p><strong>Phone:</strong> {{ phone }}</p>
+    <p><strong>About Me:</strong> {{ about }}</p>
+
+    <h3>Skills</h3>
+    <ul>
+      <li ng-repeat="skill in skills">{{ skill }}</li>
+    </ul>
+
+    <h3>Projects</h3>
+    <div ng-repeat="project in projects">
+      <p><strong>{{ project.name }}</strong>: {{ project.description }}</p>
+    </div>
+  </div>
+
+</body>
+</html>

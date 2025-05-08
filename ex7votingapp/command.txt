@@ -1,0 +1,3 @@
+npx create-react-app voting-app
+cd voting-app
+npm start

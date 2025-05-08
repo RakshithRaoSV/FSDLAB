@@ -1,0 +1,105 @@
+app.css:
+
+.calculator {
+  width: 260px;
+  margin: 50px auto;
+  border: 2px solid #000;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #f0f0f0;
+}
+
+.display {
+  margin-bottom: 10px;
+}
+
+.display input {
+  width: 100%;
+  height: 40px;
+  font-size: 20px;
+  text-align: right;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+button {
+  padding: 20px;
+  font-size: 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background-color: #e0e0e0;
+}
+
+
+app.js:
+import React, { useState } from 'react';
+import './App.css';
+
+const App = () => {
+  const [input, setInput] = useState('');
+
+  // Function to handle button clicks
+  const handleClick = (value) => {
+    setInput(input + value);
+  };
+
+  // Function to evaluate the expression
+  const handleEvaluate = () => {
+    try {
+      setInput(eval(input).toString()); // eval is used for simplicity
+    } catch (error) {
+      setInput('Error');
+    }
+  };
+
+  // Function to clear the input
+  const handleClear = () => {
+    setInput('');
+  };
+
+  return (
+    <div className="calculator">
+      <div className="display">
+        <input type="text" value={input} readOnly />
+      </div>
+      <div className="buttons">
+        <button onClick={() => handleClick('1')}>1</button>
+        <button onClick={() => handleClick('2')}>2</button>
+        <button onClick={() => handleClick('3')}>3</button>
+        <button onClick={() => handleClick('+')}>+</button>
+
+        <button onClick={() => handleClick('4')}>4</button>
+        <button onClick={() => handleClick('5')}>5</button>
+        <button onClick={() => handleClick('6')}>6</button>
+        <button onClick={() => handleClick('-')}>-</button>
+
+        <button onClick={() => handleClick('7')}>7</button>
+        <button onClick={() => handleClick('8')}>8</button>
+        <button onClick={() => handleClick('9')}>9</button>
+        <button onClick={() => handleClick('*')}>*</button>
+
+        <button onClick={() => handleClick('0')}>0</button>
+        <button onClick={() => handleClick('.')}>.</button>
+        <button onClick={handleEvaluate}>=</button>
+        <button onClick={() => handleClick('/')}>/</button>
+
+        <button onClick={handleClear}>Clear</button>
+      </div>
+    </div>
+  );
+};
+
+export default App;

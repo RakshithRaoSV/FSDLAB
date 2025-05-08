@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping List App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .shopping-list {
+            margin-top: 50px;
+        }
+        .shopping-item {
+            margin: 10px;
+        }
+        .shopping-item button {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body ng-app="shoppingApp">
+
+    <div ng-controller="ShoppingListController">
+        <h1>Shopping List</h1>
+
+        <div>
+            <input type="text" ng-model="newItem" placeholder="Enter new item">
+            <button ng-click="addItem()">Add Item</button>
+        </div>
+
+        <div class="shopping-list">
+            <div class="shopping-item" ng-repeat="item in shoppingList">
+                <span>{{ item }}</span>
+                <button ng-click="removeItem($index)">Remove</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var app = angular.module('shoppingApp', []);
+
+        app.controller('ShoppingListController', function($scope) {
+            $scope.shoppingList = [];
+
+            $scope.addItem = function() {
+                if ($scope.newItem) {
+                    $scope.shoppingList.push($scope.newItem);
+                    $scope.newItem = ''; // Clear input after adding
+                }
+            };
+
+            $scope.removeItem = function(index) {
+                $scope.shoppingList.splice(index, 1);
+            };
+        });
+    </script>
+</body>
+</html>

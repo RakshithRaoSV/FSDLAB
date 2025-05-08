@@ -1,0 +1,6 @@
+npm install -g @angular/cli
+ng new filename
+cd filename
+ng generate component parent
+ng generate component child
+ng serve
